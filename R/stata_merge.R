@@ -53,7 +53,7 @@ stata_merge <- function(master, using, by_vars, merge_type="1:1",
 
 	# Check that using data is conformable with the merge_type
 	if(substr(merge_type,3,3)=="1"){
-		if(count(unique(select_(using, .dots=by_vars)))==count(using)){
+		if(count(unique(select_(using, .dots=by_vars)))!=count(using)){
 			warning('using dataframe not unique')
 			stop()
 		}
