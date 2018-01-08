@@ -55,8 +55,7 @@ stata_merge <- function(master, using, by_vars, merge_type="1:1",
 		mutate(
 			in_using = ifelse(!is.na(in_using), 1, 0),
 			in_master = ifelse(!is.na(in_master), 1, 0)
-		) %>%
-		select(-c(in_using, in_master))
+		)
 
 	#
 	out[, merge_var] = ifelse(out$in_using==1 & out$in_master==1, 3, 
