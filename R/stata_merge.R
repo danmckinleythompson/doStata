@@ -41,12 +41,12 @@ stata_merge <- function(master, using, by_vars, merge_type="1:1",
 
 	# Check that master data is conformable with the merge_type
 	if(substr(merge_type,1,1)=="1"){
-		count(unique(select_(master, .dots=by_vars)))==nrow(master)
+		count(unique(select_(master, .dots=by_vars)))==count(master)
 	}
 
 	# Check that using data is conformable with the merge_type
 	if(substr(merge_type,3,3)=="1"){
-		count(unique(select_(using, .dots=by_vars)))==nrow(using)
+		count(unique(select_(using, .dots=by_vars)))==count(using)
 	}
 
 	#
