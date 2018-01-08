@@ -61,7 +61,7 @@ stata_merge <- function(master, using, by_vars, merge_type="1:1",
 
 	#
 	out = mutate(master, in_master=1) %>%
-		full_join(mutate(using, in_using=1), by=c("candidate")) %>%
+		full_join(mutate(using, in_using=1), by=by_vars) %>%
 		mutate(
 			in_using = ifelse(!is.na(in_using), 1, 0),
 			in_master = ifelse(!is.na(in_master), 1, 0)
