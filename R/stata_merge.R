@@ -10,10 +10,11 @@
 #' @param using the dataframe being merged into the master dataframe
 #' @param by_vars a vector of variables on which the merge is being conducted
 #' @param merge_type the type of Stata merge you want to run. Options 
-#' that parse are "1:1", "m:1", and "1:m" where the choice for the master 
-#' dataframe appears before the colon, the choice for the using dataframe
-#' appears after the colon, "1" means that dataframe is unique on the merging
-#' variables, and "m" means that dataframe is not unique on the merging variables.
+#' that parse are "1:1", "m:1", and "1:m" where the choice for 
+#' the master dataframe appears before the colon, the choice for the using 
+#' dataframe appears after the colon, "1" means that dataframe is unique on 
+#' the merging variables, and "m" means that dataframe is not unique on the 
+#' merging variables.
 #' @param merge_var a name for the merge indicator that is added to the new 
 #' dataframe. Defaults to "merge". 
 #' @param gen controls whether new dataframe contains the merge indicator. 
@@ -37,12 +38,16 @@ stata_merge <- function(master, using, by_vars, merge_type="1:1",
 	require(tidyverse)
 
 	# Check that the merge type is valid
-	if(!(merge_type %in% c("1:1", "1:m", "m:1"))) warning('merge_type invalid')
+	if(!(merge_type %in% c("1:1", "1:m", "m:1"))){
+		warning('merge_type invalid')
+		stop()
+	}
 
 	# Check that master data is conformable with the merge_type
 	if(substr(merge_type,1,1)=="1"){
 		if(count(unique(select_(master, .dots=by_vars)))!=count(master)){
 			warning('master dataframe not unique')
+			stop()
 		} 
 	}
 
@@ -50,6 +55,7 @@ stata_merge <- function(master, using, by_vars, merge_type="1:1",
 	if(substr(merge_type,3,3)=="1"){
 		if(count(unique(select_(using, .dots=by_vars)))==count(using)){
 			warning('using dataframe not unique')
+			stop()
 		}
 	}
 

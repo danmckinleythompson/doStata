@@ -15,10 +15,11 @@ stata_merge(master, using, by_vars, merge_type = "1:1", merge_var = "merge",
 \item{by_vars}{a vector of variables on which the merge is being conducted}
 
 \item{merge_type}{the type of Stata merge you want to run. Options 
-that parse are "1:1", "m:1", and "1:m" where the choice for the master 
-dataframe appears before the colon, the choice for the using dataframe
-appears after the colon, "1" means that dataframe is unique on the merging
-variables, and "m" means that dataframe is not unique on the merging variables.}
+that parse are "1:1", "m:1", and "1:m" where the choice for 
+the master dataframe appears before the colon, the choice for the using 
+dataframe appears after the colon, "1" means that dataframe is unique on 
+the merging variables, and "m" means that dataframe is not unique on the 
+merging variables.}
 
 \item{merge_var}{a name for the merge indicator that is added to the new 
 dataframe. Defaults to "merge".}
