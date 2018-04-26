@@ -45,7 +45,7 @@ stata_merge <- function(master, using, by_vars, merge_type="1:1",
 
 	# Check that master data is conformable with the merge_type
 	if(substr(merge_type,1,1)=="1"){
-		if(count(unique(select_(master, .dots=by_vars)))!=count(master)){
+		if(dplyr::count(unique(select_(master, .dots=by_vars)))!=dplyr::count(master)){
 			warning('master dataframe not unique')
 			stop()
 		} 
@@ -53,7 +53,7 @@ stata_merge <- function(master, using, by_vars, merge_type="1:1",
 
 	# Check that using data is conformable with the merge_type
 	if(substr(merge_type,3,3)=="1"){
-		if(count(unique(select_(using, .dots=by_vars)))!=count(using)){
+		if(dplyr::count(unique(select_(using, .dots=by_vars)))!=dplyr::count(using)){
 			warning('using dataframe not unique')
 			stop()
 		}
@@ -76,7 +76,7 @@ stata_merge <- function(master, using, by_vars, merge_type="1:1",
 	
 	#
 	if(!gen) out = out[, colnames(out)!=merge_var]
-	out = select(out, -c(in_using, in_master))
+	out = dplyr::select(out, -c(in_using, in_master))
 
 	#
 	return(out)
