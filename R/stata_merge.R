@@ -72,7 +72,7 @@ stata_merge <- function(master, using, by_vars, merge_type="1:1",
 		ifelse(out$in_using==1 & out$in_master==0, 2, 1))
 
 	#
-	out = out[out[, merge_var][[1]] %in% keep_cases, ]
+	out = out[out[, merge_var] %in% keep_cases, ]
 	
 	#
 	if(!gen) out = out[, colnames(out)!=merge_var]
