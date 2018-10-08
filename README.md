@@ -1,1 +1,1 @@
-# stataR
+# doStata
